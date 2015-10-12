@@ -119,8 +119,9 @@ wigrpmean <- summarize(wdintgrp, wdmean = mean(steps))
 wkends <- filter(wigrpmean, wkend == "Weekend")
 wkdays <- filter(wigrpmean, wkend == "Weekday")
 ## plot weekend and weekday data as 2 plots
-par(mar=c(4,4,1,1))
-par(mfcol = c(2,1))
+## set the margins smaller, set to print in 1 x 2 layout and
+## lower the separation of the axis labels for a better look
+par(mar=c(3,3,2,1), mfcol = c(2,1), mgp = c(1.5, 0.5, 0))
 with(wkends, plot(interval, wdmean, type = "l", main = "Weekend Activity Pattern", xlab = "5-minute Intervals (hhmm)", ylab = "Average Weekend Steps", col = "red"))
 with(wkdays, plot(interval, wdmean, type = "l", main = "Weekdays Activity Pattern", xlab = "5-minute Intervals (hhmm)", ylab = "Average Weekdays Steps", col = "green"))
 ```
@@ -135,7 +136,7 @@ The above plots show the average number of steps across all weekdays [top plot] 
 ```r
 wigrpmean <- summarize(wdintgrp, wdmean = mean(steps))
 suppressMessages(library(ggplot2))
-qplot(interval, wdmean, data = wigrpmean, facets = wkend ~. , geom = "line", main = "Average Daily Activity Pattern", xlab = "5-minute Intervals", ylab = "Average Daily Steps", color = wkend)
+qplot(interval, wdmean, data = wigrpmean, facets = wkend ~. , geom = "line", main = "Average Daily Activity Pattern", xlab = "5-minute Intervals(hhmm)", ylab = "Average Daily Steps", color = wkend)
 ```
 
 ![plot of chunk altplot](figure/altplot-1.png) 
