@@ -21,7 +21,7 @@ opts_chunk$set(echo = TRUE)
 ```r
 setwd("~/Desktop/Rwd/ReprodblResrch/RepResData")
 pa1data <- read.csv("activity.csv")
-steps.day <- rowsum(pa1data$steps, pa1data$date, na.rm = TRUE)
+steps.day <- rowsum(pa1data$steps, pa1data$date)
 hist(steps.day, xlab = "Total # of Steps/day", main = "Number of Steps", col = "red")
 ```
 
@@ -29,13 +29,16 @@ hist(steps.day, xlab = "Total # of Steps/day", main = "Number of Steps", col = "
 
 #### Mean and median of total # of steps/day
 
+Calculate mean and median of total number of steps/day [ignore all NA values]
+
+
 ```r
-steps.day.mean <- format(mean(steps.day), nsmall = 3, big.mark = ",")
-steps.day.median <- prettyNum(median(steps.day), big.mark = ",")
+steps.day.mean <- format(mean(steps.day, na.rm = TRUE), nsmall = 3, big.mark = ",")
+steps.day.median <- prettyNum(median(steps.day, na.rm = TRUE), big.mark = ",")
 ```
 
 Mean and median of the total number of steps taken per day are
-9,354.230 and 10,395 respectively.
+10,766.189 and 10,765 respectively.
 
 #### Average daily activity pattern
 
@@ -101,7 +104,7 @@ stepsnew.day.mean <- format(mean(stepsnew.day), nsmall = 3, big.mark = ",")
 stepsnew.day.median <- format(median(stepsnew.day), nsmall = 3, big.mark = ",")
 ```
 
-Mean and median of the total number of steps taken per day using the new data set are 10,766.189 and 10,766.189 respectively. As a comparison, the same values for the original data with the "NA" values were 9,354.230 and 10,395 respectively. The replacement of "NA" values with the interval mean values has smoothed out the distribution and increased the mean and median values.
+Mean and median of the total number of steps taken per day using the new data set are 10,766.189 and 10,766.189 respectively. As a comparison, the same values for the original data with the "NA" values were 10,766.189 and 10,765 respectively. Since we replaced the missing values with the mean values for each interval, the new mean and median are very close to the original values.
 
 #### Weekday/weekend activity patterns
 
